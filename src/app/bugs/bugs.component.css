@@ -4,3 +4,9 @@
   border-radius: 10px;
   justify-content: center;
 }
+
+.bug-table-div {
+  border: 2px solid grey;
+  border-radius: 10px;
+  justify-content: center;
+}
