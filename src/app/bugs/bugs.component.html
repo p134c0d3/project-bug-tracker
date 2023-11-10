@@ -27,34 +27,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Cross-Account Transfers Failing</td>
-          <td>JP</td>
-          <td>11/06/2023</td>
-          <td>Description...</td>
-          <td>
-            <button class="btn btn-primary mr-2">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
+          <tr *ngFor="let bug of bugs">
+            <th scope="row">{{ bug.id }}</th>
+            <td>{{ bug.title }}</td>
+            <td>{{ bug.tester }}</td>
+            <td>{{ bug.date }}</td>
+            <td>{{ bug.description }}</td>
+            <td>
+              <button class="btn btn-primary mr-2">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<app-projects></app-projects>
