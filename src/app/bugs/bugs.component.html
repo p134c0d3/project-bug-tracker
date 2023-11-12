@@ -28,8 +28,9 @@
           <th scope="col">Menu ⚙️</th>
         </tr>
       </thead>
-      <tbody *ngFor="let bug of bugs; let i = index">
-          <tr *ngIf="formHasBeenSubmitted">
+      <tbody>
+          <!-- <tr *ngIf="formHasBeenSubmitted"> -->
+          <tr *ngFor="let bug of bugs; let i = index">
             <th scope="row">{{ bug.id }}</th>
             <td>{{ bug.status }}</td>
             <td>{{ bug.title }}</td>

@@ -14,20 +14,8 @@ export class BugsComponent implements OnInit {
 
   ngOnInit(): void {
     this.bugs = this.bugsService.getBugs();
+    this.bugsService.bugsUpdated.subscribe((bugs) => {
+      this.bugs = bugs;
+    });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

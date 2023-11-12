@@ -90,7 +90,7 @@
               >Title<span style="color: red">*</span></label
             >
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="titleInput"
               placeholder="Bug Title"
@@ -101,7 +101,7 @@
             />
             <span
               class="help-block text-danger"
-              *ngIf="titleRef.valid && titleRef.touched"
+              *ngIf="!titleRef.valid && titleRef.touched"
             >
               Please enter a valid title!
             </span>
@@ -111,7 +111,7 @@
               >Tester<span style="color: red">*</span></label
             >
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="testerInput"
               placeholder="Tested By"
@@ -122,7 +122,7 @@
             />
             <span
               class="help-block text-danger"
-              *ngIf="testerRef.valid && testerRef.touched"
+              *ngIf="!testerRef.valid && testerRef.touched"
             >
               Please enter a valid tester!
             </span>
@@ -132,6 +132,7 @@
               >Primary Module <span style="color: red">*</span></label
             >
             <input
+              type="text"
               class="form-control"
               id="priModuleInput"
               placeholder="Please enter the primary module"
@@ -142,7 +143,7 @@
             />
             <span
               class="help-block text-danger"
-              *ngIf="priModuleRef.valid && priModuleRef.touched"
+              *ngIf="!priModuleRef.valid && priModuleRef.touched"
             >
               Please enter a valid primary module!
             </span>
@@ -150,6 +151,7 @@
           <div class="form-group">
             <label for="secModuleInput">Secondary Module</label>
             <input
+              type="text"
               class="form-control"
               id="secModuleInput"
               placeholder="Enter sub-module if relevant"
@@ -174,7 +176,7 @@
             />
             <span
               class="help-block text-danger"
-              *ngIf="dateTestedRef.valid && dateTestedRef.touched"
+              *ngIf="!dateTestedRef.valid && dateTestedRef.touched"
             >
               Please enter a valid date!
             </span>
@@ -189,7 +191,7 @@
               name="envInput"
               #envRef="ngModel"
               required
-              ngModel="Web"
+              ngModel
             >
               <option>Web</option>
               <option>Mobile App</option>
@@ -198,7 +200,7 @@
             </select>
             <span
               class="help-block text-danger"
-              *ngIf="envRef.valid && envRef.touched"
+              *ngIf="!envRef.valid && envRef.touched"
             >
               Please select a valid environment!
             </span>
@@ -213,7 +215,7 @@
               name="bugStatusInput"
               #statusRef="ngModel"
               required
-              ngModel="Open"
+              ngModel
             >
               <option>Open</option>
               <option>Fixed in Dev</option>
@@ -225,7 +227,7 @@
             </select>
             <span
               class="help-block text-danger"
-              *ngIf="statusRef.valid && statusRef.touched"
+              *ngIf="!statusRef.valid && statusRef.touched"
             >
               Please select a valid status!
             </span>
@@ -246,7 +248,7 @@
             ></textarea>
             <span
               class="help-block text-danger"
-              *ngIf="descRef.valid && descRef.touched"
+              *ngIf="!descRef.valid && descRef.touched"
             >
               Please enter a valid description!
             </span>

@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { Bug } from './../bugs/bug.model';
 import { Injectable } from '@angular/core';
 
@@ -5,6 +6,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BugsService {
+
+  bugsUpdated: Subject<Bug[]> = new Subject<Bug[]>();
+
   bugs: Bug[] = [
     new Bug(
       1,
@@ -62,10 +66,11 @@ export class BugsService {
     return this.bugs.slice();
   }
 
-  generateID() {}
-
   addBug(bug: Bug) {
-    this.bugs.push()
+    this.bugs.push(bug);
+    console.log(bug);
+    console.log(this.bugs);
+    this.bugsUpdated.next(this.bugs)
   }
 
   updateBug() {}
