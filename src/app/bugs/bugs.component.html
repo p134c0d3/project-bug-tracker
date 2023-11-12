@@ -19,20 +19,25 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">ID 🔢</th>
+          <th scope="col">Status 📜</th>
           <th scope="col">Title 📛</th>
           <th scope="col">Tester 👷</th>
           <th scope="col">Date 🗓️</th>
-          <th scope="col">Description 📝</th>
+          <th scope="col">Env</th>
+          <th scope="col">Primary Module 📝</th>
           <th scope="col">Menu ⚙️</th>
         </tr>
       </thead>
-      <tbody>
-          <tr *ngFor="let bug of bugs">
+      <tbody *ngFor="let bug of bugs; let i = index">
+          <tr *ngIf="formHasBeenSubmitted">
             <th scope="row">{{ bug.id }}</th>
+            <td>{{ bug.status }}</td>
             <td>{{ bug.title }}</td>
             <td>{{ bug.tester }}</td>
-            <td>{{ bug.date }}</td>
-            <td>{{ bug.description }}</td>
+            <td>{{ bug.date | date : "MM/dd/yyyy"}}</td>
+            <td>{{ bug.env }}</td>
+            <!-- <td>{{ bug.date }}</td> -->
+            <td>{{ bug.primaryModule }}</td>
             <td>
               <button class="btn btn-primary mr-2">Edit</button>
             </td>

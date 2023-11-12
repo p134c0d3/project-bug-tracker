@@ -81,77 +81,140 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form
+          (ngSubmit)="onFormSubmit(templateFormRef)"
+          #templateFormRef="ngForm"
+        >
           <div class="form-group">
-            <label for="exampleFormControlInput1">Title<span style="color: red">*</span></label>
+            <label for="titleInput"
+              >Title<span style="color: red">*</span></label
+            >
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="titleInput"
               placeholder="Bug Title"
+              name="titleInput"
+              #titleRef="ngModel"
               required
+              ngModel
             />
+            <span
+              class="help-block text-danger"
+              *ngIf="titleRef.valid && titleRef.touched"
+            >
+              Please enter a valid title!
+            </span>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Tester<span style="color: red">*</span></label>
+            <label for="testerInput"
+              >Tester<span style="color: red">*</span></label
+            >
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="testerInput"
               placeholder="Tested By"
+              name="testerInput"
+              #testerRef="ngModel"
               required
+              ngModel
             />
+            <span
+              class="help-block text-danger"
+              *ngIf="testerRef.valid && testerRef.touched"
+            >
+              Please enter a valid tester!
+            </span>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1"
+            <label for="priModuleInput"
               >Primary Module <span style="color: red">*</span></label
             >
             <input
               class="form-control"
-              id="exampleFormControlSelect1"
-              required
+              id="priModuleInput"
               placeholder="Please enter the primary module"
+              name="priModuleInput"
+              #priModuleRef="ngModel"
+              required
+              ngModel
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="priModuleRef.valid && priModuleRef.touched"
             >
+              Please enter a valid primary module!
+            </span>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1"
-              >Secondary Module</label
-            >
+            <label for="secModuleInput">Secondary Module</label>
             <input
               class="form-control"
-              id="exampleFormControlSelect1"
+              id="secModuleInput"
               placeholder="Enter sub-module if relevant"
-            >
+              name="secModuleInput"
+              ngModel
+            />
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1"
+            <label for="dateTestedInput"
               >Date Tested<span style="color: red">*</span></label
             >
             <input
               class="form-control"
-              id="exampleFormControlSelect1"
+              id="dateTestedInput"
               placeholder="MM/DD/YYYY"
+              data-provide="datepicker"
+              name="dateTestedInput"
+              #dateTestedRef="ngModel"
+              type="date"
               required
+              ngModel
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="dateTestedRef.valid && dateTestedRef.touched"
             >
+              Please enter a valid date!
+            </span>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1"
+            <label for="envInput"
               >Environment<span style="color: red">*</span></label
             >
             <select
               class="form-control"
-              id="exampleFormControlSelect1"
+              id="envInput"
+              name="envInput"
+              #envRef="ngModel"
               required
+              ngModel="Web"
             >
               <option>Web</option>
               <option>Mobile App</option>
               <option>Mobile Browser</option>
               <option>Admin Panel</option>
             </select>
+            <span
+              class="help-block text-danger"
+              *ngIf="envRef.valid && envRef.touched"
+            >
+              Please select a valid environment!
+            </span>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Bug Status<span style="color: red">*</span></label>
-            <select class="form-control" id="exampleFormControlSelect1" required>
+            <label for="bugStatusInput"
+              >Bug Status<span style="color: red">*</span></label
+            >
+            <select
+              class="form-control"
+              id="bugStatusInput"
+              name="bugStatusInput"
+              #statusRef="ngModel"
+              required
+              ngModel="Open"
+            >
               <option>Open</option>
               <option>Fixed in Dev</option>
               <option>Fixed in QA</option>
@@ -160,72 +223,107 @@
               <option>Reopened</option>
               <option>Closed</option>
             </select>
+            <span
+              class="help-block text-danger"
+              *ngIf="statusRef.valid && statusRef.touched"
+            >
+              Please select a valid status!
+            </span>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Bug Description<span style="color: red">*</span></label>
+            <label for="bugDescInput"
+              >Bug Description<span style="color: red">*</span></label
+            >
             <textarea
               class="form-control"
-              id="exampleFormControlTextarea1"
+              id="bugDescInput"
               rows="5"
               placeholder="Write bug description here."
+              name="bugDescInput"
+              #descRef="ngModel"
+              required
+              ngModel
             ></textarea>
+            <span
+              class="help-block text-danger"
+              *ngIf="descRef.valid && descRef.touched"
+            >
+              Please enter a valid description!
+            </span>
           </div>
           <div class="form-group">
             <label for="bugFileUpload">Upload Bug Screenshots Here: </label>
-            <input type="file" class="form-control-file" id="bugFileUpload" multiple>
+            <input
+              type="file"
+              class="form-control-file"
+              id="bugFileUpload"
+              name="fileUploadInput"
+              multiple
+              ngModel
+            />
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Date Retested</label>
+            <label for="dateRetestInput">Date Retested</label>
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="dateRetestInput"
               placeholder="Date bug was retested"
+              name="dateRetestInput"
+              ngModel
             />
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Retested By</label>
+            <label for="retestedByInput">Retested By</label>
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="retestedByInput"
               placeholder="Who retested the bug?"
+              name="retestedByInput"
+              ngModel
             />
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Date Reopened</label>
+            <label for="dateReopenedInput">Date Reopened</label>
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="dateReopenedInput"
               placeholder="Date bug was retested"
+              name="dateReopenedInput"
+              ngModel
             />
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Reopened By</label>
+            <label for="reopenedByInput">Reopened By</label>
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="reopenedByInput"
               placeholder="Who retested the bug?"
+              name="reopenedByInput"
+              ngModel
             />
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Date Closed</label>
+            <label for="dateClosedInput">Date Closed</label>
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="dateClosedInput"
               placeholder="Date bug was closed"
+              name="dateClosedInput"
+              ngModel
             />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+            <button class="btn btn-primary" type="submit" [disabled]="!templateFormRef.valid">Save</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
