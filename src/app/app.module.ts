@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { Router, RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,6 +16,14 @@ import { BugComponent } from './bugs/projects/project/bug/bug.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'clients', component: ClientComponent },
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'profile', component: ProfileComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,14 +36,15 @@ import { NavbarComponent } from './home/navbar/navbar.component';
     ProjectComponent,
     BugComponent,
     ProfileComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
