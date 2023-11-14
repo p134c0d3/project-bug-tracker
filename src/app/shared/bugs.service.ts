@@ -72,7 +72,12 @@ export class BugsService {
     this.bugsUpdated.next(this.bugs);
   }
 
+  deleteBug(i: number) {
+    this.bugs.splice(i, 1)
+    this.bugs = this.getBugs();
+  }
+
   updateBug() {}
 
-  
+
 }

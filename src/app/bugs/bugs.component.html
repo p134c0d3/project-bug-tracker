@@ -283,7 +283,7 @@
           <div class="form-group">
             <label for="dateRetestInput">Date Retested</label>
             <input
-              type="email"
+              type="date"
               class="form-control"
               id="dateRetestInput"
               placeholder="Date bug was retested"
@@ -305,7 +305,7 @@
           <div class="form-group">
             <label for="dateReopenedInput">Date Reopened</label>
             <input
-              type="email"
+              type="date"
               class="form-control"
               id="dateReopenedInput"
               placeholder="Date bug was retested"
@@ -327,7 +327,7 @@
           <div class="form-group">
             <label for="dateClosedInput">Date Closed</label>
             <input
-              type="email"
+              type="date"
               class="form-control"
               id="dateClosedInput"
               placeholder="Date bug was closed"
@@ -343,8 +343,7 @@
               class="btn btn-primary"
               type="submit"
               [disabled]="!templateFormRef.valid"
-              data-toggle="modal"
-              data-target="#staticBackdrop"
+              data-dismiss="modal"
             >
               Save
             </button>

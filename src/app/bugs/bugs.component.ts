@@ -64,7 +64,7 @@ export class BugsComponent implements OnInit {
   }
 
   onEditBug(i: number) {
-
+    this.bugDetails
   }
 
 
