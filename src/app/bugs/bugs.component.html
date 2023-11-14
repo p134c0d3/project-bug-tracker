@@ -14,6 +14,14 @@
 </div>
 <hr />
 <div class="container-fluid">
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    data-toggle="modal"
+    data-target="#staticBackdrop"
+  >
+    New Bug
+  </button>
   <div class="row mt-5 bug-table-div">
     <table class="table bug-table">
       <thead class="thead-dark">
@@ -29,23 +37,320 @@
         </tr>
       </thead>
       <tbody>
-          <!-- <tr *ngIf="formHasBeenSubmitted"> -->
-          <tr *ngFor="let bug of bugs; let i = index">
-            <th scope="row">{{ bug.id }}</th>
-            <td>{{ bug.status }}</td>
-            <td>{{ bug.title }}</td>
-            <td>{{ bug.tester }}</td>
-            <td>{{ bug.date | date : "MM/dd/yyyy"}}</td>
-            <td>{{ bug.env }}</td>
-            <!-- <td>{{ bug.date }}</td> -->
-            <td>{{ bug.primaryModule }}</td>
-            <td>
-              <button class="btn btn-primary mr-2">Edit</button>
-            </td>
-          </tr>
+        <!-- <tr *ngIf="formHasBeenSubmitted"> -->
+        <tr *ngFor="let bug of bugs; let i = index">
+          <th scope="row">{{ bug.id }}</th>
+          <td>{{ bug.status }}</td>
+          <td>{{ bug.title }}</td>
+          <td>{{ bug.tester }}</td>
+          <td>{{ bug.date | date : "MM/dd/yyyy" }}</td>
+          <td>{{ bug.env }}</td>
+          <!-- <td>{{ bug.date }}</td> -->
+          <td>{{ bug.primaryModule }}</td>
+          <td>
+            <button class="btn btn-primary mr-2" (click)="onEditBug(i)">
+              Edit
+            </button>
+            <button class="btn btn-danger mr-2" (click)="onDeleteBug(i)">
+              Delete
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
 
 <app-projects></app-projects>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-backdrop="static"
+  data-keyboard="true"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Bug Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          (ngSubmit)="onFormSubmit(templateFormRef)"
+          #templateFormRef="ngForm"
+        >
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-backdrop="static"
+            data-keyboard="true"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <label for="titleInput"
+              >Title<span style="color: red">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="titleInput"
+              placeholder="Bug Title"
+              name="titleInput"
+              #titleRef="ngModel"
+              required
+              ngModel
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="!titleRef.valid && titleRef.touched"
+            >
+              Please enter a valid title!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="testerInput"
+              >Tester<span style="color: red">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="testerInput"
+              placeholder="Tested By"
+              name="testerInput"
+              #testerRef="ngModel"
+              required
+              ngModel
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="!testerRef.valid && testerRef.touched"
+            >
+              Please enter a valid tester!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="priModuleInput"
+              >Primary Module <span style="color: red">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="priModuleInput"
+              placeholder="Please enter the primary module"
+              name="priModuleInput"
+              #priModuleRef="ngModel"
+              required
+              ngModel
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="!priModuleRef.valid && priModuleRef.touched"
+            >
+              Please enter a valid primary module!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="secModuleInput">Secondary Module</label>
+            <input
+              type="text"
+              class="form-control"
+              id="secModuleInput"
+              placeholder="Enter sub-module if relevant"
+              name="secModuleInput"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="dateTestedInput"
+              >Date Tested<span style="color: red">*</span></label
+            >
+            <input
+              class="form-control"
+              id="dateTestedInput"
+              placeholder="MM/DD/YYYY"
+              data-provide="datepicker"
+              name="dateTestedInput"
+              #dateTestedRef="ngModel"
+              type="date"
+              required
+              ngModel
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="!dateTestedRef.valid && dateTestedRef.touched"
+            >
+              Please enter a valid date!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="envInput"
+              >Environment<span style="color: red">*</span></label
+            >
+            <select
+              class="form-control"
+              id="envInput"
+              name="envInput"
+              #envRef="ngModel"
+              required
+              ngModel
+            >
+              <option>Web</option>
+              <option>Mobile App</option>
+              <option>Mobile Browser</option>
+              <option>Admin Panel</option>
+            </select>
+            <span
+              class="help-block text-danger"
+              *ngIf="!envRef.valid && envRef.touched"
+            >
+              Please select a valid environment!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="bugStatusInput"
+              >Bug Status<span style="color: red">*</span></label
+            >
+            <select
+              class="form-control"
+              id="bugStatusInput"
+              name="bugStatusInput"
+              #statusRef="ngModel"
+              required
+              ngModel
+            >
+              <option>Open</option>
+              <option>Fixed in Dev</option>
+              <option>Fixed in QA</option>
+              <option>Clarification</option>
+              <option>Unable to Recreate</option>
+              <option>Reopened</option>
+              <option>Closed</option>
+            </select>
+            <span
+              class="help-block text-danger"
+              *ngIf="!statusRef.valid && statusRef.touched"
+            >
+              Please select a valid status!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="bugDescInput"
+              >Bug Description<span style="color: red">*</span></label
+            >
+            <textarea
+              class="form-control"
+              id="bugDescInput"
+              rows="5"
+              placeholder="Write bug description here."
+              name="bugDescInput"
+              #descRef="ngModel"
+              required
+              ngModel
+            ></textarea>
+            <span
+              class="help-block text-danger"
+              *ngIf="!descRef.valid && descRef.touched"
+            >
+              Please enter a valid description!
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="bugFileUpload">Upload Bug Screenshots Here: </label>
+            <input
+              type="file"
+              class="form-control-file"
+              id="bugFileUpload"
+              name="fileUploadInput"
+              multiple
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="dateRetestInput">Date Retested</label>
+            <input
+              type="email"
+              class="form-control"
+              id="dateRetestInput"
+              placeholder="Date bug was retested"
+              name="dateRetestInput"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="retestedByInput">Retested By</label>
+            <input
+              type="email"
+              class="form-control"
+              id="retestedByInput"
+              placeholder="Who retested the bug?"
+              name="retestedByInput"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="dateReopenedInput">Date Reopened</label>
+            <input
+              type="email"
+              class="form-control"
+              id="dateReopenedInput"
+              placeholder="Date bug was retested"
+              name="dateReopenedInput"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="reopenedByInput">Reopened By</label>
+            <input
+              type="email"
+              class="form-control"
+              id="reopenedByInput"
+              placeholder="Who retested the bug?"
+              name="reopenedByInput"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label for="dateClosedInput">Date Closed</label>
+            <input
+              type="email"
+              class="form-control"
+              id="dateClosedInput"
+              placeholder="Date bug was closed"
+              name="dateClosedInput"
+              ngModel
+            />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="!templateFormRef.valid"
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

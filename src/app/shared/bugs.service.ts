@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BugsService {
-
   bugsUpdated: Subject<Bug[]> = new Subject<Bug[]>();
 
   bugs: Bug[] = [
@@ -27,7 +26,7 @@ export class BugsService {
       undefined
     ),
     new Bug(
-      1,
+      2,
       'Open',
       'Test Title',
       'JP',
@@ -43,7 +42,7 @@ export class BugsService {
       undefined
     ),
     new Bug(
-      1,
+      3,
       'Open',
       'Test Title',
       'JP',
@@ -70,10 +69,10 @@ export class BugsService {
     this.bugs.push(bug);
     console.log(bug);
     console.log(this.bugs);
-    this.bugsUpdated.next(this.bugs)
+    this.bugsUpdated.next(this.bugs);
   }
 
   updateBug() {}
 
-  deleteBug() {}
+  
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,8 @@ import { ProjectComponent } from './bugs/projects/project/project.component';
 import { BugComponent } from './bugs/projects/project/bug/bug.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,6 +45,13 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
