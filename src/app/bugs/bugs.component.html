@@ -93,15 +93,7 @@
           (ngSubmit)="onFormSubmit(templateFormRef)"
           #templateFormRef="ngForm"
         >
-          <div
-            class="modal fade"
-            id="staticBackdrop"
-            data-backdrop="static"
-            data-keyboard="true"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-          >
+          <div class="form-group">
             <label for="titleInput"
               >Title<span style="color: red">*</span></label
             >
@@ -294,7 +286,7 @@
           <div class="form-group">
             <label for="retestedByInput">Retested By</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="retestedByInput"
               placeholder="Who retested the bug?"
@@ -316,7 +308,7 @@
           <div class="form-group">
             <label for="reopenedByInput">Reopened By</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="reopenedByInput"
               placeholder="Who retested the bug?"
@@ -343,7 +335,8 @@
               class="btn btn-primary"
               type="submit"
               [disabled]="!templateFormRef.valid"
-              data-dismiss="modal"
+              data-toggle="modal"
+              data-target="#staticBackdrop"
             >
               Save
             </button>
