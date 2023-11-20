@@ -17,7 +17,7 @@ export class BugsService {
       'Dashboard',
       new Date('11/01/2023'),
       'Web',
-      'Test Desc',
+      'Test Descalskd;jf;laskjdf kalsdjf;lkasjd faj;sldkf ja;lksdjf;las dfj;alksjd fj a;lksdjfla;sjdf ksldjfa skldj f',
       'Service Request Widget',
       new Date('11/02/2023'),
       'JP',
@@ -49,7 +49,7 @@ export class BugsService {
       'Dashboard',
       new Date('11/01/2023'),
       'Web',
-      'Test Desc',
+      'Test Descalskd;jf;laskjdf kalsdjf;lkasjd faj;sldkf ja;lksdjf;las dfj;alksjd fj a;lksdjfla;sjdf ksldjfa skldj f',
       'Service Request Widget',
       new Date('11/02/2023'),
       'JP',
@@ -73,11 +73,9 @@ export class BugsService {
   }
 
   deleteBug(i: number) {
-    this.bugs.splice(i, 1)
+    this.bugs.splice(i, 1);
     this.bugs = this.getBugs();
   }
 
   updateBug() {}
-
-
 }
