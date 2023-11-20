@@ -14,14 +14,21 @@
 </div>
 <hr />
 <div class="container-fluid">
-  <button
+  <div class="row clearfix">
+
+    <button
     type="button"
-    class="btn btn-outline-primary"
+    class="btn btn-outline-primary mr-5"
     data-toggle="modal"
     data-target="#staticBackdrop"
-  >
+    >
     New Bug
   </button>
+  <div class="form-outline">
+    <label for="bugFilter" class="form-label">Search Bugs</label>
+    <input type="text" name="bugFilter" id="bugFilter" placeholder="Search Bugs" class="form-control" />
+  </div>
+  </div>
   <div class="row mt-5 bug-table-div">
     <table class="table bug-table">
       <thead class="thead-dark">
@@ -48,7 +55,7 @@
           <td>{{ bug.env }}</td>
           <!-- <td>{{ bug.date }}</td> -->
           <td>{{ bug.primaryModule }}</td>
-          <td>{{ bug.description | shorten }}</td>
+          <td>{{ bug.description | shorten:20 }}</td>
           <td>
             <button class="btn btn-primary mr-2" (click)="onEditBug(i)">
               Edit
