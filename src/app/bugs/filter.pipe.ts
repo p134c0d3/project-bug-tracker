@@ -4,16 +4,17 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(filterBugs: any, filterString: string, propName: string): any {
-    if (filterBugs.length === 0) {
-      return filterBugs;
+  transform(items: any[], searchText: string): any[] {
+    if (!items) {
+      return [];
     }
-    const resultArr = [];
-    for (const bug of filterBugs) {
-      if (bug[propName] === filterString) {
-        resultArr.push(bug);
-      }
+    if (!searchText) {
+      return items;
     }
-    return resultArr;
+    searchText = searchText.toLocaleLowerCase();
+
+    return items.filter((it) => {
+      return it.toLocaleLowerCase().includes(searchText);
+    });
   }
 }

@@ -25,13 +25,13 @@
 <hr />
 <div class="container-fluid">
   <div class="form-group">
-      <input type="text" name="bugFilterInput" id="bugFilterInput" class="form-control col-md-2" placeholder="Search Bugs">
+      <input type="text" name="bugFilterInput" id="bugFilterInput" class="form-control col-md-2" placeholder="Search Bugs" [(ngModel)]="searchText" >
   </div>
   <div class="row mt-5 bug-table-div">
     <table class="table bug-table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">ID 🔢</th>
+          <th scope="col">ID 🔢 </th>
           <th scope="col">Status 📜</th>
           <th scope="col">Title 📛</th>
           <th scope="col">Tester 👷</th>
@@ -44,9 +44,9 @@
       </thead>
       <tbody>
         <!-- <tr *ngIf="formHasBeenSubmitted"> -->
-        <tr *ngFor="let bug of bugs, let i = index">
+        <tr *ngFor="let bug of bugs | filter: searchText">
           <th scope="row">{{ bug.id }}</th>
-          <td>{{ bug.status | uppercase }}</td>
+          <td>{{ bug.status }}</td>
           <td>{{ bug.title }}</td>
           <td>{{ bug.tester }}</td>
           <td>{{ bug.date | date : "MM/dd/yyyy" }}</td>
@@ -55,10 +55,10 @@
           <td>{{ bug.primaryModule }}</td>
           <td>{{ bug.description | shorten : 20 }}</td>
           <td>
-            <button class="btn btn-primary mr-2" (click)="onEditBug(i)">
+            <button class="btn btn-primary mr-2">
               Edit
             </button>
-            <button class="btn btn-danger mr-2" (click)="onDeleteBug(i)">
+            <button class="btn btn-danger mr-2">
               Delete
             </button>
           </td>

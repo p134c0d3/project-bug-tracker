@@ -59,13 +59,13 @@ export class BugsComponent implements OnInit {
   }
 
   onDeleteBug(i: number) {
-    this.bugsService.bugs.splice(i, 1)
+    this.bugsService.bugs.splice(i, 1);
     this.bugs = this.bugsService.getBugs();
   }
 
   onEditBug(i: number) {
-    this.bugDetails
+    this.bugDetails;
   }
 
-  filterBugs = '';
+  searchText = '';
 }
