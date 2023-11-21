@@ -18,6 +18,7 @@ import { NavbarComponent } from './home/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ShortenPipe } from './bugs/shorten.pipe';
+import { FilterPipe } from './bugs/filter.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     BugComponent,
     ProfileComponent,
     NavbarComponent,
-    ShortenPipe
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

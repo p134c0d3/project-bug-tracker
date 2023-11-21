@@ -58,6 +58,8 @@ export class BugsService {
       undefined
     ),
   ];
+  filteredStatus = '';
+
 
   constructor() {}
 

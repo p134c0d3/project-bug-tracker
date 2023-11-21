@@ -67,5 +67,5 @@ export class BugsComponent implements OnInit {
     this.bugDetails
   }
 
-
+  filterBugs = '';
 }
